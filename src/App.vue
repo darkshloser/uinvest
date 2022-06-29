@@ -1,7 +1,8 @@
 <template>
-  <component v-bind:is="currentHeader" />
-  <component v-bind:is="headers['dashboard']" />
-  <router-view />
+  <div data-spy="scroll" id="page-top">
+    <component v-bind:is="currentHeader" />
+    <router-view />
+  </div>
 </template>
 
 <script>
@@ -22,28 +23,31 @@ export default {
       currentHeader: "compHeader",
     };
   },
+  mounted() {
+    window.addEventListener("DOMContentLoaded", () => {
+      // Navbar shrink function
+      var navbarShrink = function () {
+        const navbarCollapsible = document.body.querySelector("#mainNav");
+        if (!navbarCollapsible) {
+          return;
+        }
+        if (window.scrollY === 0) {
+          navbarCollapsible.classList.remove("navbar-shrink");
+        } else {
+          navbarCollapsible.classList.add("navbar-shrink");
+        }
+      };
+
+      // Shrink the navbar
+      navbarShrink();
+
+      // Shrink the navbar when page is scrolled
+      document.addEventListener("scroll", navbarShrink);
+    });
+  },
+  methods: {},
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-}
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
+<style src="./assets/css/styles.css">
 </style>

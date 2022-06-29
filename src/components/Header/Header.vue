@@ -1,5 +1,32 @@
 <template>
-  <header class="p-3 bg-dark text-white">
+  <!-- Navigation-->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container px-4 px-lg-5">
+      <a href="/" class="navbar-brand">
+        <img id="logo-id" class="logo" src="../../assets/img/logo.png" />
+      </a>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link" @click="scrollToElement('about')">About</a>
+          </li>
+          <li class="nav-item">
+            <router-link class="nav-link" to="/page/#projects"
+              >Home</router-link
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#signup">Contact</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#signup">Login</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- <header class="p-3 bg-dark text-white">
     <div class="container">
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
@@ -48,7 +75,7 @@
         </div>
       </div>
     </div>
-  </header>
+  </header> -->
 </template>
 
 <script>
@@ -58,8 +85,27 @@ export default {
   data() {
     return {};
   },
+  methods: {
+    scrollToElement(section) {
+      const el = document.body.querySelector("#about");
+      console.log(section);
+      // console.log(navbarCollapsible);
+      // const [el] = this.$refs.last;
+      // console.log(el);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    },
+  },
 };
 </script>
 
 <style scoped>
+.logo {
+  left: 0;
+  font-size: 20px;
+  cursor: pointer;
+  background-position: center center;
+  max-width: 50px;
+}
 </style>
